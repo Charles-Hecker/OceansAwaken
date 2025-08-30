@@ -1,4 +1,4 @@
-package com.heyitscharles.oceansawaken;
+package com.heyitscharles.onehundredmeters;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,15 +15,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(OceansAwaken.MOD_ID)
-public class OceansAwaken
+@Mod(OneHundredMeters.MOD_ID)
+public class OneHundredMeters
 {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "oceansawaken";
+    public static final String MOD_ID = "onehundredmeters";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public OceansAwaken(FMLJavaModLoadingContext context)
+    public OneHundredMeters(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
 
