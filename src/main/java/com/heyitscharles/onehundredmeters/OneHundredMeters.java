@@ -1,8 +1,10 @@
 package com.heyitscharles.onehundredmeters;
 
-import com.heyitscharles.onehundredmeters.item.tanks;
+import com.heyitscharles.onehundredmeters.effect.OxygenEffectContainer;
+import com.heyitscharles.onehundredmeters.item.Tab;
+import com.heyitscharles.onehundredmeters.item.TankItems;
+import com.heyitscharles.onehundredmeters.item.renderer.TankRenderer;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,13 +17,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(OneHundredMeters.MOD_ID)
-public class OneHundredMeters
-{
+public class OneHundredMeters {
+
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "onehundredmeters";
+
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -35,8 +39,11 @@ public class OneHundredMeters
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        tanks.register(modEventBus);
+        //Pass through mod content
 
+        Tab.register(modEventBus);
+        TankItems.register(modEventBus);
+        OxygenEffectContainer.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -54,9 +61,7 @@ public class OneHundredMeters
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(tanks.STANDARD);
-        }
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -73,7 +78,7 @@ public class OneHundredMeters
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            CuriosRendererRegistry.register(TankItems.STANDARD_TANK.get(), () -> new TankRenderer());
         }
     }
 }

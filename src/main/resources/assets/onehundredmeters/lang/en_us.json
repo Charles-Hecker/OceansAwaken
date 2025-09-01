@@ -1,3 +1,7 @@
 {
-  "item.onehundredmeters.standard": "Standard O2 Tank"
+  "item.onehundredmeters.standard_tank": "Standard O2 Tank",
+
+  "creativetab.onehundredmeters.tanks": "100 Meters",
+
+  "effect.onehundredmeters.oxygen": "Oxygen"
 }

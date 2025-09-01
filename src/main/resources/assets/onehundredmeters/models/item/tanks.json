@@ -1,0 +1,3 @@
+{
+  "loader": "forge:separate_transforms"
+}
